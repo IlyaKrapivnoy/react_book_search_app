@@ -24,9 +24,11 @@ const SearchBar = ({ placeholder, data }) => {
     const classes = useStyles();
 
     const [filteredData, setFilteredData] = useState([]);
+    const [wordEntered, setWordEntered] = useState();
 
     const handleFilter = (e) => {
         const searchWord = e.target.value;
+        setWordEntered(searchWord);
         const newFilter = data.filter((value) => {
             return value.title.toLowerCase().includes(searchWord.toLowerCase());
         });
@@ -37,6 +39,11 @@ const SearchBar = ({ placeholder, data }) => {
         }
     };
 
+    const clearInput = () => {
+        setFilteredData([]);
+        setWordEntered('');
+    };
+
     return (
         <>
             <Paper component='form' className={classes.root}>
@@ -45,8 +52,16 @@ const SearchBar = ({ placeholder, data }) => {
                     placeholder={placeholder}
                     inputProps={{ 'aria-label': 'search google maps' }}
                     onChange={handleFilter}
+                    value={wordEntered}
                 />
-                {filteredData.length === 0 ? <SearchIcon /> : <CloseIcon />}
+                {filteredData.length === 0 ? (
+                    <SearchIcon />
+                ) : (
+                    <CloseIcon
+                        style={{ cursor: 'pointer' }}
+                        onClick={clearInput}
+                    />
+                )}
             </Paper>
             {filteredData.length !== 0 && (
                 <div
