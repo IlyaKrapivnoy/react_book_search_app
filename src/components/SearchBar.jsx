@@ -16,13 +16,6 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(1),
         flex: 1,
     },
-    iconButton: {
-        padding: 10,
-    },
-    divider: {
-        height: 28,
-        margin: 4,
-    },
 }));
 
 const SearchBar = ({ placeholder, data }) => {
@@ -41,14 +34,32 @@ const SearchBar = ({ placeholder, data }) => {
             <div className='dataResults'>
                 {data.map((value, key) => {
                     return (
-                        <Link
-                            className='dataItem'
-                            href={value.link}
-                            target='_blank'
-                            rel='noreferrer'
+                        <Paper
+                            style={{
+                                width: 300,
+                                padding: '4px',
+                                margin: '10px',
+                                backgroundColor: '#969696',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
                         >
-                            <p>{value.title} </p>
-                        </Link>
+                            <Link
+                                className='dataItem'
+                                href={value.link}
+                                target='_blank'
+                                rel='noreferrer'
+                                style={{
+                                    color: '#fff',
+                                    fontWeight: 'bold',
+                                    textUnderlineOffset: 4,
+                                    textDecorationThickness: 2,
+                                }}
+                            >
+                                <p className='p_link'>{value.title} </p>
+                            </Link>
+                        </Paper>
                     );
                 })}
             </div>
