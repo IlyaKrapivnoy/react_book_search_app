@@ -31,7 +31,10 @@ const SearchBar = ({ placeholder, data }) => {
                 />
                 <SearchIcon />
             </Paper>
-            <div className='dataResults'>
+            <div
+                className='dataResults'
+                style={{ overflowY: 'scroll', margin: '20px 0' }}
+            >
                 {data.map((value, key) => {
                     return (
                         <Paper
