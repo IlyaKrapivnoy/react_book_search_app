@@ -4,6 +4,7 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from '@material-ui/core';
 import { useState } from 'react';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,6 +36,7 @@ const SearchBar = ({ placeholder, data }) => {
             setFilteredData(newFilter);
         }
     };
+
     return (
         <>
             <Paper component='form' className={classes.root}>
@@ -44,7 +46,7 @@ const SearchBar = ({ placeholder, data }) => {
                     inputProps={{ 'aria-label': 'search google maps' }}
                     onChange={handleFilter}
                 />
-                <SearchIcon />
+                {filteredData.length === 0 ? <SearchIcon /> : <CloseIcon />}
             </Paper>
             {filteredData.length !== 0 && (
                 <div
