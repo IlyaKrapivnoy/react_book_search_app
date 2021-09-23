@@ -27,7 +27,7 @@ const SearchBar = ({ placeholder, data }) => {
     const handleFilter = (e) => {
         const searchWord = e.target.value;
         const newFilter = data.filter((value) => {
-            return value.title.includes(searchWord);
+            return value.title.toLowerCase().includes(searchWord.toLowerCase());
         });
         setFilteredData(newFilter);
     };
@@ -47,7 +47,7 @@ const SearchBar = ({ placeholder, data }) => {
                     className='dataResults'
                     style={{ overflowY: 'scroll', margin: '20px 0' }}
                 >
-                    {data.map((value, key) => {
+                    {filteredData.map((value, key) => {
                         return (
                             <Paper
                                 style={{
