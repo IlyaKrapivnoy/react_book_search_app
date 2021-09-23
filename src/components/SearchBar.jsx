@@ -47,7 +47,7 @@ const SearchBar = ({ placeholder, data }) => {
                     className='dataResults'
                     style={{ overflowY: 'scroll', margin: '20px 0' }}
                 >
-                    {filteredData.map((value, key) => {
+                    {filteredData.slice(0, 15).map((value, key) => {
                         return (
                             <Paper
                                 style={{
