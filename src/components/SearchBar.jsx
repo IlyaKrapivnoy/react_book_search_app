@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,15 +29,30 @@ const SearchBar = ({ placeholder, data }) => {
     const classes = useStyles();
 
     return (
-        <Paper component='form' className={classes.root}>
-            <InputBase
-                className={classes.input}
-                placeholder='Search Google Maps'
-                inputProps={{ 'aria-label': 'search google maps' }}
-            />
-
-            <SearchIcon />
-        </Paper>
+        <>
+            <Paper component='form' className={classes.root}>
+                <InputBase
+                    className={classes.input}
+                    placeholder={placeholder}
+                    inputProps={{ 'aria-label': 'search google maps' }}
+                />
+                <SearchIcon />
+            </Paper>
+            <div className='dataResults'>
+                {data.map((value, key) => {
+                    return (
+                        <Link
+                            className='dataItem'
+                            href={value.link}
+                            target='_blank'
+                            rel='noreferrer'
+                        >
+                            <p>{value.title} </p>
+                        </Link>
+                    );
+                })}
+            </div>
+        </>
     );
 };
 export default SearchBar;
